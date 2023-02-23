@@ -1,9 +1,9 @@
 import { ErrorRequestHandler, Express, RequestHandler } from 'express';
-import { Config } from '../urls';
+import { Properties } from '../urls';
 
 const createNotFoundHandler = async (): Promise<RequestHandler> => {
     // Fetch static 404-page from the nav.no frontend
-    const notFoundHtml = await fetch(Config.URLS.navno404)
+    const notFoundHtml = await fetch(Properties.URLs.navno404)
         .then((res) => {
             if (res.status === 404) {
                 return res.text();
@@ -24,9 +24,7 @@ const createNotFoundHandler = async (): Promise<RequestHandler> => {
 export const registerErrorHandlers = async (expressApp: Express) => {
     const notFoundHandler = await createNotFoundHandler();
 
-    expressApp.use('*', notFoundHandler);
-
-    expressApp.use(((err, req, res, next) => {
+    const serverErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
         const { path } = req;
         const { status, stack } = err;
         const msg = stack?.split('\n')[0];
@@ -41,5 +39,9 @@ export const registerErrorHandlers = async (expressApp: Express) => {
 
         // TODO: Html for server errors
         return res.status(statusCode).end();
-    }) as ErrorRequestHandler);
+    };
+
+    expressApp.use('*', notFoundHandler);
+
+    expressApp.use(serverErrorHandler);
 };

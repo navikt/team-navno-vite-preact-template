@@ -2,6 +2,7 @@ import express, { Router } from 'express';
 import { createServer } from 'vite';
 import { HtmlRenderer, devRender, prodRender } from './ssr/htmlRenderer';
 import { createCacheMiddleware } from '../utils/cacheMiddleware';
+import * as process from 'process';
 
 const assetsDir = `${process.cwd()}/frontendDist/client/assets`;
 
@@ -29,6 +30,7 @@ export const registerSiteRoutes = async (router: Router) => {
             server: { middlewareMode: true },
             appType: 'custom',
             root: '../',
+            base: process.env.APP_BASE_PATH,
         });
 
         router.use(vite.middlewares);
@@ -39,7 +41,7 @@ export const registerSiteRoutes = async (router: Router) => {
     router.use('*', createCacheMiddleware({ ttlSec: 600, maxSize: 2 }));
 
     router.get('/', async (req, res) => {
-        const html = await render();
+        const html = await render('/');
         return res.status(200).send(html);
     });
 };

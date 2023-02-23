@@ -12,3 +12,9 @@ ReactDOM.hydrateRoot(
         <App />
     </React.StrictMode>
 );
+
+if (import.meta.hot) {
+    import.meta.hot.on('vite:beforeUpdate', (data: any) => {
+        window.location.reload();
+    });
+}
