@@ -1,0 +1,14 @@
+name: Deploy to prod
+on:
+  release:
+    types: [released]
+
+jobs:
+  build-and-deploy:
+    if: github.event.release.target_commitish == 'master'
+    uses: ./.github/workflows/build-and-deploy.yml
+    with:
+      environment: prod
+    secrets:
+      NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+      READER_TOKEN: ${{ secrets.READER_TOKEN }}

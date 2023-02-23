@@ -1,0 +1,30 @@
+---
+apiVersion: nais.io/v1alpha1
+kind: Application
+metadata:
+  name: <app name>
+  namespace: <team namespace>
+  labels:
+    team: <team name>
+spec:
+  image: {{image}}
+  team: <team name>
+  port: {{port}}
+  liveness:
+    path: {{basePath}}/api/internal/isAlive
+    initialDelay: 5
+  readiness:
+    path: {{basePath}}/api/internal/isReady
+    initialDelay: 5
+  env:
+    - name: NPM_CONFIG_CACHE
+      value: /tmp/npm-cache
+  ingresses:
+  {{#each ingresses as |ingress|}}
+    - {{ingress}}
+  {{/each}}
+  replicas:
+  {{#with replicas}}
+    min: {{min}}
+    max: {{max}}
+  {{/with}}

@@ -1,0 +1,12 @@
+name: Deploy to dev
+on:
+  workflow_dispatch
+
+jobs:
+  build-and-deploy:
+    uses: ./.github/workflows/build-and-deploy.yml
+    with:
+      environment: dev
+    secrets:
+      NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+      READER_TOKEN: ${{ secrets.READER_TOKEN }}
