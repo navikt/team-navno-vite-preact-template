@@ -1,1 +1,6 @@
 @import '@navikt/ds-css/dist/index.css';
+
+@value mq-desktop-large: (min-width: 1440px);
+@value mq-desktop-small: (min-width: 1024px);
+@value mq-tablet: (min-width: 768px);
+@value mq-mobile-large: (min-width: 480px);

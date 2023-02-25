@@ -61,8 +61,8 @@ const injectWithDecorator = async (
 };
 
 export const getTemplateWithDecorator = async () => {
-    // const params = getDecoratorParams();
-    //
-    // return injectWithDecorator(params);
-    return getUndecoratedTemplate();
+    const params = getDecoratorParams();
+
+    return injectWithDecorator(params);
+    // return getUndecoratedTemplate();
 };
