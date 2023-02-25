@@ -4,7 +4,6 @@ import {
     injectDecoratorServerSide,
     Params,
 } from '@navikt/nav-dekoratoren-moduler/ssr';
-import { getDecoratorParams } from '../../../../common/decoratorParams';
 
 const decoratorEnv = process.env.ENV;
 const decoratorLocalPort = 8100;
@@ -60,9 +59,17 @@ const injectWithDecorator = async (
     }
 };
 
-export const getTemplateWithDecorator = async () => {
-    const params = getDecoratorParams();
+const decoratorParams: Params = {
+    context: 'privatperson',
+    breadcrumbs: [
+        {
+            url: '/',
+            title: 'Min app',
+            handleInApp: true,
+        },
+    ],
+};
 
+export const getTemplateWithDecorator = async (params = decoratorParams) => {
     return injectWithDecorator(params);
-    // return getUndecoratedTemplate();
 };

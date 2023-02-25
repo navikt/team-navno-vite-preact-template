@@ -1,5 +1,4 @@
 import React from 'react';
-import { Component } from './Component';
 
 import style from './App.module.css';
 
@@ -11,7 +10,7 @@ export const App = () => {
             tabIndex={-1}
             className={style.app}
         >
-            <Component />
+            <p>{'Hello world!'}</p>
         </main>
     );
 };

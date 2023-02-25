@@ -13,14 +13,12 @@
     ],
     "moduleResolution": "node",
     "module": "NodeNext",
-    "outDir": "./dist",
+    "outDir": "../dist/server",
     "strict": true,
-    "target": "ES2021",
-    "resolveJsonModule": true
+    "target": "ES2021"
   },
   "include": [
     "src/**/*.ts",
-//    "../src/**/*.ts",
-    "global.d.ts"
+    "global-server.d.ts"
   ]
 }

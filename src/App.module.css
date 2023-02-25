@@ -1,20 +1,11 @@
-@value global: "./global.css";
-@value mq-desktop-large from global;
-
 .app {
     margin: 1.5rem auto 3rem auto;
-    max-width: 100%;
+    max-width: 1440px;
     padding: 0 1rem;
 }
 
 @media (min-width: 1024px) {
     .app {
         padding: 0 3rem;
-    }
-}
-
-@media (min-width: 1440px) {
-    .app {
-        max-width: 1440px;
     }
 }

@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
         base: process.env.APP_BASE_PATH,
         css: {
             modules: {
-                // Create stable (but verbose) classnames in dev mode
+                // Create stable (but verbose!) classnames in dev mode
                 // in order to support HMR
                 ...(process.env.NODE_ENV === 'development' && {
                     generateScopedName: '[path][name]__[local]',

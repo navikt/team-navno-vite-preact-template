@@ -4,7 +4,7 @@ import { HtmlRenderer, devRender, prodRender } from './ssr/htmlRenderer';
 import { createCacheMiddleware } from '../utils/cacheMiddleware';
 import * as process from 'process';
 
-const assetsDir = `${process.cwd()}/frontendDist/client/assets`;
+const assetsDir = `${process.cwd()}/dist/client/assets`;
 
 const isProd = process.env.NODE_ENV !== 'development';
 
