@@ -17,6 +17,12 @@ export const createCacheMiddleware = ({
     ttlSec,
     maxSize,
 }: CacheMiddlewareOptions): RequestHandler => {
+    if (process.env.NODE_ENV === 'development') {
+        return (req, res, next) => {
+            next();
+        };
+    }
+
     const cache = new LRUCache<string | number, ResponseCacheEntry>({
         ttl: ttlSec * 1000,
         max: maxSize,

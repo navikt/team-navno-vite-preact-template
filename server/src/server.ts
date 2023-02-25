@@ -13,10 +13,11 @@ const { APP_PORT, APP_BASE_PATH, ENV } = process.env;
 const isLocal = ENV === 'localhost';
 
 const app = express();
+app.use('*', compression());
+
 const siteRouter = express.Router();
 const apiRouter = express.Router();
 
-app.use('*', compression());
 app.use(APP_BASE_PATH, siteRouter);
 siteRouter.use('/api', apiRouter);
 
