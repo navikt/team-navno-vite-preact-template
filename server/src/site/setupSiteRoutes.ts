@@ -1,11 +1,11 @@
 import express, { Router } from 'express';
-import * as process from 'process';
+import path from 'path';
 import { createServer } from 'vite';
 import { HtmlRenderer, devRender, prodRender } from './ssr/htmlRenderer';
 import { createCacheMiddleware } from '../utils/cacheMiddleware';
 import { createCspMiddleware } from '../utils/cspMiddleware';
 
-const assetsDir = `${process.cwd()}/server/dist/client/assets`;
+const assetsDir = path.resolve(process.cwd(), 'dist', 'client', 'assets');
 
 const isProd = process.env.NODE_ENV !== 'development';
 
@@ -14,6 +14,7 @@ export const setupSiteRoutes = async (router: Router) => {
 
     if (isProd) {
         console.log('Configuring site endpoints for production mode');
+        console.log(`Using assets dir ${assetsDir}`);
 
         router.use(
             '/assets',

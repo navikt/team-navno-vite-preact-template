@@ -3,7 +3,7 @@ import preact from '@preact/preset-vite';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-    process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
+    process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') };
 
     return {
         plugins: [preact()],
