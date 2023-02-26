@@ -4,9 +4,9 @@ dotenv.config();
 
 import express from 'express';
 import compression from 'compression';
-import { registerSiteRoutes } from './site/registerSiteRoutes.js';
-import { registerApiRoutes } from './api/registerApiRoutes';
-import { registerErrorHandlers } from './utils/errorHandlers';
+import { setupSiteRoutes } from './site/setupSiteRoutes.js';
+import { setupApiRoutes } from './api/setupApiRoutes';
+import { setupErrorHandlers } from './utils/errorHandlers';
 
 const { APP_PORT, APP_BASE_PATH, ENV } = process.env;
 
@@ -26,9 +26,9 @@ if (isLocal && APP_BASE_PATH && APP_BASE_PATH !== '/') {
     app.get('/', (req, res) => res.redirect(APP_BASE_PATH));
 }
 
-registerApiRoutes(apiRouter)
-    .then(() => registerSiteRoutes(siteRouter))
-    .then(() => registerErrorHandlers(app))
+setupApiRoutes(apiRouter)
+    .then(() => setupSiteRoutes(siteRouter))
+    .then(() => setupErrorHandlers(app))
     .catch((e) => {
         console.error(`Error occured while initializing server! - ${e}`);
         throw e;

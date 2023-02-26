@@ -21,7 +21,7 @@ const createNotFoundHandler = async (): Promise<RequestHandler> => {
     };
 };
 
-export const registerErrorHandlers = async (expressApp: Express) => {
+export const setupErrorHandlers = async (expressApp: Express) => {
     const notFoundHandler = await createNotFoundHandler();
 
     const serverErrorHandler: ErrorRequestHandler = (err, req, res, next) => {

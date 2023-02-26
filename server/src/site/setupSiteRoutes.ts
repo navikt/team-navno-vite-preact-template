@@ -9,7 +9,7 @@ const assetsDir = `${process.cwd()}/dist/client/assets`;
 
 const isProd = process.env.NODE_ENV !== 'development';
 
-export const registerSiteRoutes = async (router: Router) => {
+export const setupSiteRoutes = async (router: Router) => {
     let render: HtmlRenderer;
 
     if (isProd) {
@@ -45,8 +45,9 @@ export const registerSiteRoutes = async (router: Router) => {
         await createCspMiddleware()
     );
 
-    router.get('/', async (req, res) => {
-        const html = await render('/');
+    router.get('*', async (req, res) => {
+        console.log(req.url);
+        const html = await render(req.url);
         return res.status(200).send(html);
     });
 };

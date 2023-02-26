@@ -2,7 +2,13 @@ import React from 'react';
 
 import style from './App.module.css';
 
-export const App = () => {
+type Props = {
+    appContext: any;
+};
+
+export const App = ({ appContext }: Props) => {
+    console.log(`App context: ${JSON.stringify(appContext)}`);
+
     return (
         <main
             role={'main'}
