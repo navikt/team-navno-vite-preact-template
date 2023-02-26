@@ -5,7 +5,7 @@ import { HtmlRenderer, devRender, prodRender } from './ssr/htmlRenderer';
 import { createCacheMiddleware } from '../utils/cacheMiddleware';
 import { createCspMiddleware } from '../utils/cspMiddleware';
 
-const assetsDir = `${process.cwd()}/dist/client/assets`;
+const assetsDir = `${process.cwd()}/server/dist/client/assets`;
 
 const isProd = process.env.NODE_ENV !== 'development';
 
@@ -46,7 +46,6 @@ export const setupSiteRoutes = async (router: Router) => {
     );
 
     router.get('*', async (req, res) => {
-        console.log(req.url);
         const html = await render(req.url);
         return res.status(200).send(html);
     });

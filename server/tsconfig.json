@@ -13,7 +13,7 @@
     ],
     "moduleResolution": "node",
     "module": "NodeNext",
-    "outDir": "../dist/server",
+    "outDir": "dist/server",
     "strict": true,
     "target": "ES2021"
   },

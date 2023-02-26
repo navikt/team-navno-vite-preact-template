@@ -2,9 +2,10 @@
   "name": "navno-vite-preact-template",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "npm-run-all build:*",
-    "build:client": "vite build --outDir ./dist/frontend/client",
+    "build:client": "vite build --outDir ./server/dist/client",
     "build:ssr": "vite build --outDir ./server/src/_ssr-dist --ssr src/main-server.tsx",
     "build:server": "npm run build --workspace server",
     "start": "npm run start --workspace server",
