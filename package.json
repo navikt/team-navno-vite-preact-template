@@ -23,7 +23,8 @@
     "@navikt/ds-react": "2.4.0",
     "@navikt/nav-dekoratoren-moduler": "1.9.0",
     "@preact/compat": "17.1.2",
-    "preact-render-to-string": "5.2.6"
+    "preact-render-to-string": "5.2.6",
+    "react-router-dom": "6.8.1"
   },
   "devDependencies": {
     "@babel/preset-react": "7.18.6",

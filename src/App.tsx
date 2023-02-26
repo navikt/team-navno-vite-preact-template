@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { HelloWorld } from './components/HelloWorld';
 
 import style from './App.module.css';
@@ -6,6 +7,8 @@ import style from './App.module.css';
 type Props = {
     appContext: any;
 };
+
+const Test = () => <div>{'Hello'}</div>;
 
 export const App = ({ appContext }: Props) => {
     console.log(`App context: ${JSON.stringify(appContext)}`);
@@ -17,7 +20,12 @@ export const App = ({ appContext }: Props) => {
             tabIndex={-1}
             className={style.app}
         >
-            <HelloWorld />
+            <Routes>
+                <Route path={'/min-app/'}>
+                    <Route path={''} element={<HelloWorld />} />
+                    <Route path={'test'} element={<Test />} />
+                </Route>
+            </Routes>
         </main>
     );
 };

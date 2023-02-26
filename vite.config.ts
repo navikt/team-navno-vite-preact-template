@@ -8,8 +8,9 @@ export default defineConfig(({ mode }) => {
     return {
         plugins: [preact()],
         ssr: {
-            // React modules from node_modules must not be externalized
-            // in order to work with preact/compat
+            // Dependencies containing React components must not be externalized
+            // in order to work with preact/compat. This list must also include
+            // any higher order dependencies.
             noExternal: ['@navikt/ds-react', '@navikt/ds-icons'],
         },
         base: process.env.APP_BASE_PATH,

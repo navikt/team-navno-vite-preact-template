@@ -23,7 +23,7 @@ const paramsDefault: Params = {
     ],
 };
 
-export const _injectWithDecorator = (
+const _injectWithDecorator = (
     params: Params,
     templatePath: string,
     retries = 3

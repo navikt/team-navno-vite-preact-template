@@ -25,7 +25,7 @@ const processTemplate = async (
 export const prodRender: HtmlRenderer = async (url, context) => {
     try {
         const template = await buildHtmlTemplate();
-        const appHtml = render({});
+        const appHtml = render(url, {});
         return processTemplate(template, appHtml, context);
     } catch (e) {
         console.error(`Rendering failed ${e}`);

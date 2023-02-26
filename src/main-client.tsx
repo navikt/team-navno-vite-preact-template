@@ -5,6 +5,7 @@ import './global.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './App';
+import { BrowserRouter } from 'react-router-dom';
 
 const parseAppContext = () => {
     try {
@@ -16,8 +17,19 @@ const parseAppContext = () => {
     }
 };
 
-const renderOrHydrate = () => {
+const AppWithContext = () => {
     const appContext = parseAppContext();
+
+    return (
+        <React.StrictMode>
+            <BrowserRouter>
+                <App appContext={appContext} />
+            </BrowserRouter>
+        </React.StrictMode>
+    );
+};
+
+const renderOrHydrate = () => {
     const rootElement = document.getElementById('app') as HTMLElement;
 
     // We should only attempt to hydrate if the root element is non-empty,
@@ -29,20 +41,14 @@ const renderOrHydrate = () => {
         console.log('Hydrating!');
         ReactDOM.hydrateRoot(
             document.getElementById('app') as HTMLElement,
-            <React.StrictMode>
-                <App appContext={appContext} />
-            </React.StrictMode>
+            <AppWithContext />
         );
     } else {
         console.log('Rendering!');
         const root = ReactDOM.createRoot(
             document.getElementById('app') as HTMLElement
         );
-        root.render(
-            <React.StrictMode>
-                <App appContext={appContext} />
-            </React.StrictMode>
-        );
+        root.render(<AppWithContext />);
     }
 };
 

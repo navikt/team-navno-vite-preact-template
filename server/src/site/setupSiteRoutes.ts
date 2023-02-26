@@ -13,8 +13,9 @@ export const setupSiteRoutes = async (router: Router) => {
     let render: HtmlRenderer;
 
     if (isProd) {
-        console.log('Configuring site endpoints for production mode');
-        console.log(`Using assets dir ${assetsDir}`);
+        console.log(
+            `Configuring site endpoints for production mode - Using assets dir ${assetsDir}`
+        );
 
         router.use(
             '/assets',

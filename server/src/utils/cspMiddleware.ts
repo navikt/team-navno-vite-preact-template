@@ -21,7 +21,7 @@ const myDirectives = {
     }),
 };
 
-const cache = new Cache({ deleteOnExpire: false, maxKeys: 1, stdTTL: 600 });
+const cache = new Cache({ deleteOnExpire: false, stdTTL: 600 });
 const cacheKey = 'csp';
 
 const buildAndCache = async () => {
