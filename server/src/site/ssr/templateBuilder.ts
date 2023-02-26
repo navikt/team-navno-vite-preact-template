@@ -11,7 +11,7 @@ const getUndecoratedTemplate = () =>
     fs.readFileSync(templatePath, { encoding: 'utf-8' });
 
 export const buildHtmlTemplate = async () => {
-    const templateWithDecorator = injectWithDecorator(templatePath);
+    const templateWithDecorator = await injectWithDecorator(templatePath);
 
     if (!templateWithDecorator) {
         console.error(`Failed to fetch decorator, using undecorated template`);

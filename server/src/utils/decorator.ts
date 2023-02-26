@@ -1,5 +1,4 @@
 import {
-    buildCspHeader,
     injectDecoratorServerSide,
     Params,
 } from '@navikt/nav-dekoratoren-moduler/ssr';

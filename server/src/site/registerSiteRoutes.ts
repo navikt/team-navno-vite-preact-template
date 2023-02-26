@@ -1,8 +1,8 @@
 import express, { Router } from 'express';
+import * as process from 'process';
 import { createServer } from 'vite';
 import { HtmlRenderer, devRender, prodRender } from './ssr/htmlRenderer';
 import { createCacheMiddleware } from '../utils/cacheMiddleware';
-import * as process from 'process';
 import { createCspMiddleware } from '../utils/cspMiddleware';
 
 const assetsDir = `${process.cwd()}/dist/client/assets`;
