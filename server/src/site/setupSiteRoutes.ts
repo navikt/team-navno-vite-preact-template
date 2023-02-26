@@ -41,7 +41,7 @@ export const setupSiteRoutes = async (router: Router) => {
 
     router.use(
         '*',
-        createCacheMiddleware({ ttlSec: 600, maxSize: 2 }),
+        createCacheMiddleware({ ttlSec: 600, maxSize: 100 }),
         await createCspMiddleware()
     );
 
