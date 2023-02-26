@@ -14,9 +14,12 @@
     "prod-local": "cp .env.local-prod .env && npm run prod-local --workspace server",
     "test": "jest"
   },
-  "workspaces": ["server"],
+  "workspaces": [
+    "server"
+  ],
   "dependencies": {
     "@navikt/ds-css": "2.4.0",
+    "@navikt/ds-icons": "2.4.0",
     "@navikt/ds-react": "2.4.0",
     "@navikt/nav-dekoratoren-moduler": "1.9.0",
     "@preact/compat": "17.1.2",

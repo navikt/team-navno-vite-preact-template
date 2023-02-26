@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => {
         ssr: {
             // React modules from node_modules must not be externalized
             // in order to work with preact/compat
-            noExternal: ['@navikt/ds-react'],
+            noExternal: ['@navikt/ds-react', '@navikt/ds-icons'],
         },
         base: process.env.APP_BASE_PATH,
         css: {

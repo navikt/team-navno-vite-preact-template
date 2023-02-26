@@ -23,9 +23,14 @@ const processTemplate = async (
 };
 
 export const prodRender: HtmlRenderer = async (url, context) => {
-    const template = await buildHtmlTemplate();
-    const appHtml = render();
-    return processTemplate(template, appHtml, context);
+    try {
+        const template = await buildHtmlTemplate();
+        const appHtml = render({});
+        return processTemplate(template, appHtml, context);
+    } catch (e) {
+        console.error(`Rendering failed ${e}`);
+        return '';
+    }
 };
 
 export const devRender =
