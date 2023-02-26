@@ -19,6 +19,6 @@
   },
   "include": [
     "src/**/*.ts",
-    "global-server.d.ts"
+    "global.d.ts"
   ]
 }

@@ -3,6 +3,7 @@ import { createServer } from 'vite';
 import { HtmlRenderer, devRender, prodRender } from './ssr/htmlRenderer';
 import { createCacheMiddleware } from '../utils/cacheMiddleware';
 import * as process from 'process';
+import { createCspMiddleware } from '../utils/cspMiddleware';
 
 const assetsDir = `${process.cwd()}/dist/client/assets`;
 
@@ -38,7 +39,11 @@ export const registerSiteRoutes = async (router: Router) => {
         render = devRender(vite);
     }
 
-    router.use('*', createCacheMiddleware({ ttlSec: 600, maxSize: 2 }));
+    router.use(
+        '*',
+        createCacheMiddleware({ ttlSec: 600, maxSize: 2 }),
+        await createCspMiddleware()
+    );
 
     router.get('/', async (req, res) => {
         const html = await render('/');
