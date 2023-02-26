@@ -27,3 +27,4 @@ lerna-debug.log*
 /server/src/_ssr-dist/
 /server/dist
 node_modules
+/stats.html
