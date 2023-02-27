@@ -19,8 +19,13 @@ export default defineConfig(({ mode }) => {
         ssr: {
             // Dependencies containing React components must not be externalized
             // in order to work with preact/compat. This list must also include
-            // any higher order dependencies.
-            noExternal: ['@navikt/ds-react', '@navikt/ds-icons'],
+            // transitive dependencies.
+            noExternal: [
+                '@navikt/ds-react',
+                '@navikt/ds-icons',
+                'react-router',
+                'react-router-dom',
+            ],
         },
         base: process.env.APP_BASE_PATH,
         css: {

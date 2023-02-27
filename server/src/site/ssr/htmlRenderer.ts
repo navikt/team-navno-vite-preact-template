@@ -38,13 +38,8 @@ export const devRender =
     async (url, context) => {
         try {
             const template = await buildHtmlTemplate();
-            // SSR in Vite dev mode does not play nice with preact/compat and
-            // external react modules. We'll make do with CSR + a somewhat subpar
-            // HMR for now (see also main-client.tsx :D)
-            // Run in production mode to use SSR locally
-            // (or uncomment below and try to figure it out!)
-            // const { render } = await vite.ssrLoadModule('/src/main-server.tsx');
-            const appHtml = ''; // render();
+            const { render } = await vite.ssrLoadModule('/src/main-server.tsx');
+            const appHtml = render(url, context);
             const html = await vite.transformIndexHtml(url, template);
             return processTemplate(html, appHtml, context);
         } catch (e) {

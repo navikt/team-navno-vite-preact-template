@@ -32,22 +32,16 @@ const AppWithContext = () => {
 const renderOrHydrate = () => {
     const rootElement = document.getElementById('app') as HTMLElement;
 
-    // We should only attempt to hydrate if the root element is non-empty,
-    // and only in production mode. In dev, we need a full render in order
-    // for the HMR-workaround below to work.
-    const shouldHydrate = rootElement.hasChildNodes() && import.meta.env.PROD;
+    // We should only attempt to hydrate if the root element actually has
+    // child elements
+    const shouldHydrate = rootElement.hasChildNodes();
 
     if (shouldHydrate) {
         console.log('Hydrating!');
-        ReactDOM.hydrateRoot(
-            document.getElementById('app') as HTMLElement,
-            <AppWithContext />
-        );
+        ReactDOM.hydrateRoot(rootElement, <AppWithContext />);
     } else {
         console.log('Rendering!');
-        const root = ReactDOM.createRoot(
-            document.getElementById('app') as HTMLElement
-        );
+        const root = ReactDOM.createRoot(rootElement);
         root.render(<AppWithContext />);
     }
 };
@@ -83,12 +77,13 @@ if (import.meta.hot) {
         }
 
         const hasJsUpdate = updates.some((update) => {
-            const { type, path } = update;
+            const { type, path, timestamp } = update;
             if (type !== 'js-update') {
                 console.log(`Type was not "js-update" (${type})`);
                 return false;
             }
             console.log(`Updating for "${path}"!`);
+
             return true;
         });
 
