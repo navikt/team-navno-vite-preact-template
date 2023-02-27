@@ -1,6 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 
+/* Symlink react and react-dom directories to preact/compat in order for the
+ * aliasing to work consistently in dev mode
+ * The Vite SSR function does not seem to respect any standard module aliasing
+ * technique...
+ */
+
 const reactPath = path.resolve(process.cwd(), 'node_modules', 'react');
 const reactDomPath = path.resolve(process.cwd(), 'node_modules', 'react-dom');
 const preactCompatPath = path.resolve(
@@ -12,18 +18,16 @@ const preactCompatPath = path.resolve(
 
 const createPreactCompatSymLink = (path) => {
     try {
-        if (fs.existsSync(path)) {
-            const lstat = fs.lstatSync(path, { throwIfNoEntry: false });
-            if (lstat?.isSymbolicLink()) {
-                console.log(`${path} is already a symlink, skipping`);
-                return;
-            }
+        const lstat = fs.lstatSync(path, { throwIfNoEntry: false });
+        if (lstat?.isSymbolicLink()) {
+            console.log(`${path} is already a symlink, skipping`);
+            return;
+        }
 
-            const stat = fs.statSync(path, { throwIfNoEntry: false });
-            if (stat) {
-                console.log(`${path} exists as directory, deleting`);
-                fs.rmSync(path, { recursive: true });
-            }
+        const stat = fs.statSync(path, { throwIfNoEntry: false });
+        if (stat) {
+            console.log(`${path} exists as directory, deleting`);
+            fs.rmSync(path, { recursive: true });
         }
 
         fs.symlinkSync(preactCompatPath, path, 'dir');

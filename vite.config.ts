@@ -18,8 +18,8 @@ export default defineConfig(({ mode }) => {
         },
         ssr: {
             // Dependencies containing React components must not be externalized
-            // in order to work with preact/compat. This list must also include
-            // transitive dependencies.
+            // from the SSR bundle, in order to work with preact/compat. This
+            // list must also include transitive dependencies.
             noExternal: [
                 '@navikt/ds-react',
                 '@navikt/ds-icons',
@@ -30,8 +30,8 @@ export default defineConfig(({ mode }) => {
         base: process.env.APP_BASE_PATH,
         css: {
             modules: {
-                // Create stable (but verbose!) classnames in dev mode
-                // in order to support HMR
+                // Create stable (but verbose!) classnames in dev mode, in order
+                // to support HMR
                 ...(process.env.NODE_ENV === 'development' && {
                     generateScopedName: '[path][name]__[local]',
                 }),
