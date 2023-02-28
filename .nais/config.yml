@@ -9,7 +9,7 @@ metadata:
 spec:
   image: {{image}}
   team: personbruker
-  port: 9001
+  port: {{port}}
   liveness:
     path: {{basePath}}/api/internal/isAlive
     initialDelay: 5

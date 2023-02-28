@@ -2,9 +2,9 @@ import fs from 'fs';
 import path from 'path';
 
 /* Symlink react and react-dom directories to preact/compat in order for the
- * aliasing to work consistently in dev mode
- * The Vite SSR function does not seem to respect any standard module aliasing
- * technique...
+ * aliasing to work consistently in dev mode with SSR
+ * The Vite dev server SSR function does not seem to respect any other module
+ * aliasing technique
  */
 
 const reactPath = path.resolve(process.cwd(), 'node_modules', 'react');

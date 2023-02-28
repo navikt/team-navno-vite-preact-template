@@ -8,7 +8,7 @@ import { setupSiteRoutes } from './site/setupSiteRoutes.js';
 import { setupApiRoutes } from './api/setupApiRoutes';
 import { setupErrorHandlers } from './utils/errorHandlers';
 
-const { APP_PORT, APP_BASE_PATH, ENV } = process.env;
+const { APP_PORT, APP_BASEPATH, ENV } = process.env;
 
 const isLocal = ENV === 'localhost';
 
@@ -18,12 +18,12 @@ app.use('*', compression());
 const siteRouter = express.Router();
 const apiRouter = express.Router();
 
-app.use(APP_BASE_PATH, siteRouter);
+app.use(APP_BASEPATH, siteRouter);
 siteRouter.use('/api', apiRouter);
 
 // Redirect from root to basepath in local development environments
-if (isLocal && APP_BASE_PATH && APP_BASE_PATH !== '/') {
-    app.get('/', (req, res) => res.redirect(APP_BASE_PATH));
+if (isLocal && APP_BASEPATH && APP_BASEPATH !== '/') {
+    app.get('/', (req, res) => res.redirect(APP_BASEPATH));
 }
 
 setupApiRoutes(apiRouter)

@@ -18,7 +18,8 @@ jobs:
     environment: ${{ inputs.environment }}
     env:
       image: ghcr.io/${{ github.repository }}:deploy-${{ inputs.environment }}-${{ github.sha }}
-      basePath: /min-app
+      appBasePath: /min-app
+      appPort: 9001
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -31,7 +32,8 @@ jobs:
       - name: Define app environmment
         run: |
           cat > .env <<EOF
-          VITE_APP_BASEPATH=${{ env.basePath }}
+          APP_BASEPATH=${{ env.appBasePath }}
+          APP_PORT=${{ env.appPort }}
           ENV=${{ inputs.environment }}
           EOF
       - name: Install dependencies
@@ -48,12 +50,12 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push docker image
         run: |
-          docker build -t ${{ env.image }} .
+          docker build -t ${{ env.image }} --build-arg PORT="${{ env.appPort }}" .
           docker push ${{ env.image }}
       - uses: nais/deploy/actions/deploy@master
         env:
           CLUSTER: ${{ inputs.environment }}-gcp
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           RESOURCE: .nais/config.yml
-          VAR: image=${{ env.image }},basePath=${{ env.basePath }}
+          VAR: image=${{ env.image }},basePath=${{ env.appBasePath }},port=${{ env.appPort }}
           VARS: .nais/vars-${{ inputs.environment }}.yml

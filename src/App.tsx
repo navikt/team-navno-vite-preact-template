@@ -21,10 +21,8 @@ export const App = ({ appContext }: Props) => {
             className={style.app}
         >
             <Routes>
-                <Route path={'/min-app/'}>
-                    <Route path={''} element={<HelloWorld />} />
-                    <Route path={'test'} element={<Test />} />
-                </Route>
+                <Route path={'/'} element={<HelloWorld />} />
+                <Route path={'/test'} element={<Test />} />
             </Routes>
         </main>
     );

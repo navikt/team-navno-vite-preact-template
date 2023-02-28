@@ -27,7 +27,7 @@ export default defineConfig(({ mode }) => {
                 'react-router-dom',
             ],
         },
-        base: process.env.APP_BASE_PATH,
+        base: process.env.APP_BASEPATH,
         css: {
             modules: {
                 // Create stable (but verbose!) classnames in dev mode, in order

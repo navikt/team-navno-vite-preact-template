@@ -33,7 +33,7 @@ export const setupSiteRoutes = async (router: Router) => {
             server: { middlewareMode: true },
             appType: 'custom',
             root: '../',
-            base: process.env.APP_BASE_PATH,
+            base: process.env.APP_BASEPATH,
         });
 
         router.use(vite.middlewares);
@@ -48,7 +48,7 @@ export const setupSiteRoutes = async (router: Router) => {
     );
 
     router.get('*', async (req, res) => {
-        const html = await render(req.url);
+        const html = await render(req.originalUrl);
         return res.status(200).send(html);
     });
 };
