@@ -29,4 +29,3 @@ lerna-debug.log*
 
 node_modules
 /stats.html
-vite.config.ts.timestamp*
