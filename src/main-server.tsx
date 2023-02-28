@@ -6,6 +6,8 @@ import { App } from './App';
 const { BASE_URL } = import.meta.env;
 
 export const render = (url: string, appContext: any) => {
+    console.log(url, BASE_URL);
+
     return renderToString(
         <StaticRouter basename={BASE_URL} location={url}>
             <App appContext={appContext} />

@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config({ path: '../.env' });
 
 import express from 'express';
 import compression from 'compression';
@@ -8,7 +8,9 @@ import { setupSiteRoutes } from './site/setupSiteRoutes.js';
 import { setupApiRoutes } from './api/setupApiRoutes';
 import { setupErrorHandlers } from './utils/errorHandlers';
 
-const { APP_PORT, APP_BASEPATH, ENV } = process.env;
+const { APP_PORT, APP_BASEPATH, ENV, NODE_ENV } = process.env;
+
+console.log('env:', APP_PORT, APP_BASEPATH, ENV, NODE_ENV);
 
 const isLocal = ENV === 'localhost';
 

@@ -10,10 +10,10 @@
     "build:server": "npm run build --workspace server",
     "analyze-bundle": "ANALYZE=true npm run build:client",
     "start": "npm run start --workspace server",
-    "decorator": "docker compose up",
-    "dev-prepare": "node preact-compat-symlinks.js",
-    "dev": "npm run dev-prepare && npm run dev --workspace server",
-    "prod-local": "cp .env.local-prod .env && npm run prod-local --workspace server"
+    "start-local": "cp .env.local-prod .env && npm run start --workspace server",
+    "decorator-local": "docker compose up",
+    "dev-prepare": "node preact-compat-symlinks.js && cp .env.development .env",
+    "dev": "npm run dev-prepare && npm run dev --workspace server"
   },
   "workspaces": [
     "server"
