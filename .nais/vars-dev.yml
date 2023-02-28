@@ -1,5 +1,4 @@
-ingresses:
-  - https://www.dev.nav.no/vite-preact-template
+origin: https://www.dev.nav.no
 replicas:
   min: 1
   max: 4
