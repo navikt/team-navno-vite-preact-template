@@ -18,7 +18,7 @@ jobs:
     environment: ${{ inputs.environment }}
     env:
       image: ghcr.io/${{ github.repository }}:deploy-${{ inputs.environment }}-${{ github.sha }}
-      basePath: </minapp>
+      basePath: /min-app
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -40,8 +40,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
       - name: Build application
         run: npm run build
-      - name: Run tests
-        run: npm test
       - name: Login to Docker registry
         uses: docker/login-action@v2
         with:

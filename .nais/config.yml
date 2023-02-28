@@ -2,14 +2,14 @@
 apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
-  name: <app name>
-  namespace: <team namespace>
+  name: min-app
+  namespace: personbruker
   labels:
-    team: <team name>
+    team: personbruker
 spec:
   image: {{image}}
-  team: <team name>
-  port: {{port}}
+  team: personbruker
+  port: 9001
   liveness:
     path: {{basePath}}/api/internal/isAlive
     initialDelay: 5

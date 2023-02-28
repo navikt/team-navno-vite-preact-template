@@ -1,5 +1,5 @@
 ingresses:
-  - https://www.nav.no/<min app ingress>
+  - https://www.nav.no/min-app
 replicas:
   min: 2
   max: 4
