@@ -18,7 +18,7 @@ jobs:
     environment: ${{ inputs.environment }}
     env:
       image: ghcr.io/${{ github.repository }}:deploy-${{ inputs.environment }}-${{ github.sha }}
-      appBasePath: /min-app
+      appBasePath: /preact-template-test
       appPort: 9001
     steps:
       - name: Checkout repo

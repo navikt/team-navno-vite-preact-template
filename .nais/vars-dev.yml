@@ -1,5 +1,5 @@
 ingresses:
-  - https://www.dev.nav.no/min-app
+  - https://www.dev.nav.no/vite-preact-template
 replicas:
   min: 1
   max: 4
