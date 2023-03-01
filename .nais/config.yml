@@ -20,9 +20,7 @@ spec:
     - name: NPM_CONFIG_CACHE
       value: /tmp/npm-cache
   ingresses:
-  {{#each ingresses as |ingress|}}
-    - {{ingress}}
-  {{/each}}
+    - {{origin}}{{basePath}}
   replicas:
   {{#with replicas}}
     min: {{min}}
