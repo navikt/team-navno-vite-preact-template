@@ -45,6 +45,6 @@ export const devRender =
         } catch (e) {
             vite.ssrFixStacktrace(e as Error);
             console.error(`Dev render error: ${e}`);
-            throw e;
+            return '';
         }
     };

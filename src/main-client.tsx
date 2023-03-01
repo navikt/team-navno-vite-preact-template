@@ -18,12 +18,10 @@ const parseAppContext = () => {
 };
 
 const AppWithContext = () => {
-    const appContext = parseAppContext();
-    console.log(import.meta.env.BASE_URL);
     return (
         <React.StrictMode>
             <BrowserRouter basename={import.meta.env.BASE_URL}>
-                <App appContext={appContext} />
+                <App appContext={parseAppContext()} />
             </BrowserRouter>
         </React.StrictMode>
     );
@@ -32,9 +30,10 @@ const AppWithContext = () => {
 const renderOrHydrate = () => {
     const rootElement = document.getElementById('app') as HTMLElement;
 
-    // We should only attempt to hydrate if the root element actually has
-    // child elements
-    if (rootElement.hasChildNodes()) {
+    // We should only attempt to hydrate if the root element has child elements
+    // to hydrate. Also, hydration causes glitches with our HMR workaround
+    // below, used in dev mode.
+    if (rootElement.hasChildNodes() && import.meta.env.PROD) {
         console.log('Hydrating!');
         ReactDOM.hydrateRoot(rootElement, <AppWithContext />);
     } else {

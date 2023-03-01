@@ -5,6 +5,7 @@ import { visualizer } from 'rollup-plugin-visualizer';
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
     process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') };
+    process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 
     return {
         plugins: [
