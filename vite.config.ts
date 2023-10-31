@@ -23,7 +23,7 @@ export default defineConfig(({ mode }) => {
             // list must also include transitive dependencies.
             noExternal: [
                 '@navikt/ds-react',
-                '@navikt/ds-icons',
+                '@navikt/aksel-icons',
                 'react-router',
                 'react-router-dom',
             ],

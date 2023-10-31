@@ -1,4 +1,4 @@
-import LRUCache from 'lru-cache';
+import { LRUCache } from 'lru-cache';
 import { RequestHandler } from 'express';
 
 type CacheMiddlewareOptions = {
@@ -8,7 +8,7 @@ type CacheMiddlewareOptions = {
 };
 
 type ResponseCacheEntry = {
-    sentData: any;
+    sentData: unknown;
     statusCode: number;
 };
 
